@@ -1,4 +1,4 @@
-# curl-jq
+# Docker image curl-jq
 
 This is quiet simple here - just a Docker image with curl and jq installed.
 
