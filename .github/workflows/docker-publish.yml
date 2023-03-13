@@ -5,8 +5,9 @@ on:
   # run every biweekly
   - cron: '42 4 1,15 * *'
 
-  # push:
-  #   branches: [ "main" ]
+  push:
+    branches: ["main"]
+
   #   # Publish semver tags as releases.
   #   tags: [ 'v*.*.*' ]
   # pull_request:
