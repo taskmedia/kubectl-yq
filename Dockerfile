@@ -16,5 +16,8 @@ RUN apk add jq
 # curl_user
 USER 100
 
+# set workdirectory from / to /home/curl_user
+WORKDIR /home/curl_user
+
 # print versions
 RUN curl --version && jq --version
