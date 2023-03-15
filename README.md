@@ -9,5 +9,5 @@ This image will build every two weeks and push it to the ghcr.io registry.
 docker pull ghcr.io/taskmedia/curl-jq:main
 
 # Pull from Docker Hub
-docker pull taskmedia/curl-jq:main
+docker pull fty4/curl-jq:main
 ```
