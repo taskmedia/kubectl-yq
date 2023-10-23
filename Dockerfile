@@ -1,23 +1,23 @@
-FROM curlimages/curl
+FROM bitnami/kubectl
 
 # Image annotations
 # see: https://github.com/opencontainers/image-spec/blob/main/annotations.md#pre-defined-annotation-keys
-LABEL org.opencontainers.image.title curl-jq
-LABEL org.opencontainers.image.description image with curl and jq installed
-LABEL org.opencontainers.image.url https://github.com/taskmedia/curl-jq/pkgs/container/curl-jq
-LABEL org.opencontainers.image.source https://github.com/taskmedia/curl-jq/blob/main/Dockerfile
+LABEL org.opencontainers.image.title kubectl-yq
+LABEL org.opencontainers.image.description image with kubectl and yq installed
+LABEL org.opencontainers.image.url https://github.com/taskmedia/kubectl-yq/pkgs/container/kubectl-yq
+LABEL org.opencontainers.image.source https://github.com/taskmedia/kubectl-yq/blob/main/Dockerfile
 LABEL org.opencontainers.image.vendor task.media
 LABEL org.opencontainers.image.licenses MIT
 
 USER root
 
-RUN apk add jq
+RUN apt update &&  apt install wget
 
-# curl_user
-USER 100
+RUN LATEST_VERSION=$(wget -O- --quiet https://api.github.com/repos/mikefarah/yq/releases/latest | jq -r '.tag_name') && \
+  wget https://github.com/mikefarah/yq/releases/download/${LATEST_VERSION}/yq_linux_amd64.tar.gz -O - |\
+  tar xz && mv yq_linux_amd64 /usr/bin/yq
 
-# set workdirectory from / to /home/curl_user
-WORKDIR /home/curl_user
+USER 1001
 
 # print versions
-RUN curl --version && jq --version
+RUN kubectl version --client=true && yq --version
