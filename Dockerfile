@@ -14,8 +14,8 @@ USER root
 RUN apt update &&  apt install wget
 
 RUN LATEST_VERSION=$(wget -O- --quiet https://api.github.com/repos/mikefarah/yq/releases/latest | jq -r '.tag_name') && \
-  wget https://github.com/mikefarah/yq/releases/download/${LATEST_VERSION}/yq_linux_amd64.tar.gz -O - |\
-  tar xz && mv yq_linux_amd64 /usr/bin/yq
+  wget "https://github.com/mikefarah/yq/releases/download/${LATEST_VERSION}/yq_linux_$(dpkg --print-architecture).tar.gz" -O - |\
+  tar xz && mv yq_linux_* /usr/bin/yq
 
 USER 1001
 
