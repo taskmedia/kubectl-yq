@@ -113,7 +113,7 @@ jobs:
       run: echo "REPOSITORY_NAME=${REPOSITORY_NAME#*/}" >> $GITHUB_ENV
 
     # Clean up legacy images from ghcr.io
-    - uses: actions/delete-package-versions@v4
+    - uses: actions/delete-package-versions@v5
       if: github.event_name != 'pull_request'
       with:
         package-name: ${{ env.REPOSITORY_NAME }}
