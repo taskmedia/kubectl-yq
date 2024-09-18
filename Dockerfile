@@ -2,12 +2,12 @@ FROM bitnami/kubectl
 
 # Image annotations
 # see: https://github.com/opencontainers/image-spec/blob/main/annotations.md#pre-defined-annotation-keys
-LABEL org.opencontainers.image.title kubectl-yq
-LABEL org.opencontainers.image.description image with kubectl and yq installed
-LABEL org.opencontainers.image.url https://github.com/taskmedia/kubectl-yq/pkgs/container/kubectl-yq
-LABEL org.opencontainers.image.source https://github.com/taskmedia/kubectl-yq/blob/main/Dockerfile
-LABEL org.opencontainers.image.vendor task.media
-LABEL org.opencontainers.image.licenses MIT
+LABEL org.opencontainers.image.title=kubectl-yq
+LABEL org.opencontainers.image.description="image with kubectl and yq installed"
+LABEL org.opencontainers.image.url=https://github.com/taskmedia/kubectl-yq/pkgs/container/kubectl-yq
+LABEL org.opencontainers.image.source=https://github.com/taskmedia/kubectl-yq/blob/main/Dockerfile
+LABEL org.opencontainers.image.vendor=task.media
+LABEL org.opencontainers.image.licenses=MIT
 
 USER root
 
