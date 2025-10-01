@@ -25,7 +25,8 @@ RUN LATEST_VERSION=$(curl -s https://api.github.com/repos/mikefarah/yq/releases/
   | tar xz \
   && mv yq_linux_* /usr/bin/yq
 
-USER 65534 # nobody
+# nobody
+USER 65534
 
 # print versions
 RUN kubectl version --client && yq --version
