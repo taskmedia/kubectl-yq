@@ -101,11 +101,12 @@ jobs:
     # https://github.com/sigstore/cosign
     - name: Sign the published Docker image
       if: ${{ github.event_name != 'pull_request' }}
-      env:
-        COSIGN_EXPERIMENTAL: "true"
       # This step uses the identity token to provision an ephemeral certificate
       # against the sigstore community Fulcio instance.
-      run: echo "${{ steps.meta.outputs.tags }}" | xargs -I {} cosign sign --yes --tlog-upload=false {}@${{ steps.build-and-push.outputs.digest }}
+      run: |
+        curl -s https://raw.githubusercontent.com/sigstore/root-signing/refs/heads/main/targets/signing_config.v0.2.json \
+          | jq 'del(.rekorTlogUrls)' > /tmp/signing_config.json
+        echo "${{ steps.meta.outputs.tags }}" | xargs -I {} cosign sign --yes --signing-config /tmp/signing_config.json {}@${{ steps.build-and-push.outputs.digest }}
 
     - name: Get repository name
       env:
